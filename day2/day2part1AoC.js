@@ -1,5 +1,5 @@
 let fs = require("fs");
-let text = fs.readFileSync("./inputday2.txt").toString();
+let text = fs.readFileSync("./day2/input.txt").toString();
 let textByLine = text.split("\n")
 textByLine = textByLine.map(element => element.split(/:| |-/))
 
@@ -20,8 +20,12 @@ let letterCounter = (str, letter) => {
 let countValidPasswords = (input) => {
     let counter = 0
     for(let i=0; i < input.length-1; i++) {
-        
-        if (parseInt(input[i][0]) <= letterCounter(input[i][4], input[i][2]) && letterCounter(input[i][4], input[i][2]) <= parseInt(input[i][1])) {
+        let leastAmountOfLettersAllowed = parseInt(input[i][0])
+        let amountOfLettersInThePassword = letterCounter(input[i][4], input[i][2])
+        let theHighestAmountOfLettersAllowed = parseInt(input[i][1])
+
+        if (leastAmountOfLettersAllowed <= amountOfLettersInThePassword && 
+        amountOfLettersInThePassword <= theHighestAmountOfLettersAllowed) {
             counter += 1
         }
     }

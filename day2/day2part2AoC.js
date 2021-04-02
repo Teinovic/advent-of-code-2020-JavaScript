@@ -1,5 +1,5 @@
 let fs = require("fs");
-let text = fs.readFileSync("./inputday2.txt").toString();
+let text = fs.readFileSync("./day2/input.txt").toString();
 let textByLine = text.split("\n")
 textByLine = textByLine.map(element => element.split(/:| |-/))
 textByLine.forEach(element => element.splice(3, 1))
