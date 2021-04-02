@@ -2,15 +2,21 @@ let fs = require("fs");
 let text = fs.readFileSync("./inputday2.txt").toString();
 let textByLine = text.split("\n")
 textByLine = textByLine.map(element => element.split(/:| |-/))
+textByLine.forEach(element => element.splice(3, 1))
 
 
 
 let passFinder = (input) => {
-    passCount = 0
+    let passCount = 0
+
     for(let i=0; i < input.length-1; i++) {
-        if (textByLine[i][2] === textByLine[i][4][parseInt(input[i][0] -1 )] && textByLine[i][2] !== textByLine[i][4][parseInt(input[i][1] -1 )]) {
+        let letter = textByLine[i][2]
+        let firstLocationOfLetterInWord = textByLine[i][3][parseInt(input[i][0] -1 )]
+        let secondLocationOfLetterInWord = textByLine[i][3][parseInt(input[i][1] -1 )]
+
+        if (letter === firstLocationOfLetterInWord && letter !== secondLocationOfLetterInWord) {
             passCount++
-        } else if (textByLine[i][2] === textByLine[i][4][parseInt(input[i][1] -1 )] && textByLine[i][2] !== textByLine[i][4][parseInt(input[i][0] -1 )]) {
+        } else if (letter !== firstLocationOfLetterInWord && letter === secondLocationOfLetterInWord) {
             passCount++
         }
     }
